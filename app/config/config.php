@@ -8,7 +8,7 @@ define('DB_NAME' , 'db_wikis');
 define('APPROOT' , dirname(dirname(__FILE__)));
 
 // App URL
-define('URLROOT' , '_YOUR_URL_'); //http://localhost/FILEPROJECT 
+define('URLROOT' , 'http://localhost/wikis'); //http://localhost/FILEPROJECT 
 // SiteName
-define('SITENAME' , '_YOUR_SITENAME_');
+define('SITENAME' , 'Wiki Website');
 ?>
