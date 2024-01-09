@@ -10,15 +10,11 @@
         }
         // load Service  ================
         public function service($service) {
-            $servicePathFile = '../app/services/'. $service .'.php';
             // Require Service file 
-            if (file_exists($servicePathFile)) {
-                require_once $servicePathFile;
+
+                require_once '../app/services/'. $service .'.php';
                 // Instance Service
                 return new $service();
-            }else {
-                echo "File not Exists";
-            }
             
         }
         // load View 

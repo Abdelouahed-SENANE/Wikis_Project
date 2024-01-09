@@ -3,8 +3,11 @@ include APPROOT . '/helpers/helpers.php';
 
 class Pages extends Controller
 {
+    private $userService;
     public function __construct()
     {
+        $this->userService = new ServiceUser();
+
     }
     public function index()
     {
@@ -98,8 +101,17 @@ class Pages extends Controller
                 if (empty($errors['username']) && empty($errors['email']) && empty($errors['password'])) {
 
                     $password = password_hash($password , PASSWORD_DEFAULT);
-                    
 
+                    $newUser = new User();
+                    $newUser->ID_user = uniqid();
+                    $newUser->Username = $username;
+                    $newUser->Password = $password;
+                    $newUser->Email = $email;
+                    $newUser->Img_User = 'vector.png';
+                    $newUser->roleName = 'Auteur';
+                    
+                    $this->userService->addUser($newUser);
+                    
 
 
                     $data = [
