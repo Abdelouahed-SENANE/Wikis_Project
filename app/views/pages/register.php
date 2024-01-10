@@ -1,5 +1,5 @@
-<?php require APPROOT . '/views/Includes/header.php'; ?>
-<?php require APPROOT . '/views/Includes/navbar.php'; ?>
+<?php require APPROOT . '/views/Includes/Visitor/header.php'; ?>
+<?php require APPROOT . '/views/Includes/Visitor/navbar.php'; ?>
 
 
 <div class="h-[calc(100vh-44px)] px-8 mt-10 lg:mt-0 lg:flex lg:items-center lg:justify-center lg:h-[calc(100vh-64px)]">
@@ -68,4 +68,4 @@
 <!-- load Script JS  -->
 <script  type="module" src="<?php echo URLROOT?>/js/registration.js"></script>
 
-<?php require APPROOT . '/views/Includes/footer.php'; ?>
+<?php require APPROOT . '/views/Includes/Visitor/footer.php'; ?>

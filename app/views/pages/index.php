@@ -1,5 +1,5 @@
-<?php require APPROOT . '/views/Includes/header.php'; ?>
-<?php require APPROOT . '/views/Includes/navbar.php'; ?>
+<?php require APPROOT . '/views/Includes/Visitor/header.php'; ?>
+<?php require APPROOT . '/views/Includes/Visitor/navbar.php'; ?>
 
 <!-- == landing page == -->
 <div class="w-full relative h-[calc(100vh-44px)] bg-[url(../assets/images/background.jpg)] bg-cover overflow-hidden bg-center bg-no-repeat lg:h-[calc(100vh-64px)] ">
@@ -35,4 +35,4 @@
 
 
 
-<?php require APPROOT . '/views/Includes/footer.php'; ?>
+<?php require APPROOT . '/views/Includes/Visitor/footer.php'; ?>

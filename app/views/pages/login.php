@@ -1,5 +1,5 @@
-<?php require APPROOT . '/views/Includes/header.php'; ?>
-<?php require APPROOT . '/views/Includes/navbar.php'; ?>
+<?php require APPROOT . '/views/Includes/Visitor/header.php'; ?>
+<?php require APPROOT . '/views/Includes/Visitor/navbar.php'; ?>
 
 
 <!--
@@ -73,11 +73,5 @@
 
 
 
-
-
-
-
-
-
 <script type="module" src="<?php echo URLROOT ?>/js/login.js"></script>
-<?php require APPROOT . '/views/Includes/footer.php'; ?>
+<?php require APPROOT . '/views/Includes/Visitor/footer.php'; ?>
