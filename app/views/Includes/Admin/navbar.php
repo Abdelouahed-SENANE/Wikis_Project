@@ -10,17 +10,17 @@
                     </svg>
                 </button>
             </div>
-            <a class="btn btn-ghost text-2xl tracking-widest text-white font-bold">Dashboard</a>
-        </div>
-        <div class="flex items-center">
             <form action="">
-                <div class="relative w-[350px] mr-[20px]">
+                <div class="relative w-[350px] ml-[10px]">
                     <input type="text" name="" id="" class="block w-full pl-5 focus:outline-white placeholder:text-sm border border-white text-sm outline-none py-1 rounded-lg" placeholder="Search..." />
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 absolute top-[50%] text-primary right-[10px] translate-y-[-50%]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                 </div>
             </form>
+        </div>
+        <div class="flex items-center">
+
 
             <button class="btn btn-ghost btn-circle mr-3">
                 <div class="indicator text-white">

@@ -27,6 +27,7 @@
                     },
                     transitionProperty: {
                         'width': 'width',
+                        'hidden' : 'hidden'
                     }
                 }
             }
@@ -37,5 +38,5 @@
 
 <body class="font-[poppins]">
     <!-- =========== Main Section ============= -->
-    <section class="flex">
+    <section class="flex relative">
 
