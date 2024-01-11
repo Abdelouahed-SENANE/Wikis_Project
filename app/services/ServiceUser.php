@@ -34,6 +34,51 @@
                 echo "Error From Database" . $e->getMessage();
             }
         }
+        // Fetch Users From Database 
+        public function fetchUsers() {
+            $sql = "SELECT * FROM user";
+            try {
+                $this->db->query($sql);
+                $users = $this->db->manyObjects();
+                return $users;
+            } catch (PDOException $e) {
+                echo "Error From Database" . $e->getMessage();
+            }
+        }
+        // ===== Delete Users From Database 
+        public function deleteUsers($id) {
+
+            $sql = "DELETE FROM user WHERE ID_user = :id";
+
+            try {
+                $this->db->query($sql);
+                $this->db->bind(":id" , $id);
+                $this->db->execute();
+            } catch (PDOException $e) {
+                echo "Error From Database" . $e->getMessage();
+            }
+
+
+
+        }
+
+        // =========== Search Users ========
+        public function findUsers($value) {
+
+            $sql = "SELECT * FROM user WHERE Username LIKE :value OR Email LIKE :value";
+            try {
+                $this->db->query($sql);
+                $this->db->bind(":value" , $value . '%');
+                $users = $this->db->manyObjects();
+                return $users;
+            } catch (PDOException $e) {
+                echo "Error From Database" . $e->getMessage();
+            }
+
+
+
+        }
+
     }
 
 ?>

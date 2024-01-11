@@ -20,6 +20,9 @@
                 <div>
                     <h2 class="text-2xl font-medium text-primary text-center">Form Admin</h2>
                 </div>
+                <div>
+                    <input type="hidden" name="csrf_token" value="<?= $data['token']?>">
+                </div>
                 <div class="py-2">
                     <label for="username" class="block mb-2 text-sm font-medium ">Username</label>
                     <div class="flex">
@@ -28,7 +31,7 @@
                                 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                             </svg>
                         </span>
-                        <input type="text" id="username" class="rounded-none rounded-e-lg bg-gray-50 border  text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5      dark:focus:ring-blue-500 " placeholder="Enter username">
+                        <input type="text" id="username" name="username" class="rounded-none rounded-e-lg bg-gray-50 border  text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5      dark:focus:ring-blue-500 " placeholder="Enter username">
                     </div>
                     <span class="text-rose-500 text-sm font-medium" id="usernameErr"></span>
                 </div>
@@ -40,7 +43,7 @@
                                 <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z" />
                             </svg>
                         </span>
-                        <input type="text" id="email" class="rounded-none rounded-e-lg bg-gray-50 border  text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5      dark:focus:ring-blue-500 " placeholder="Enter Email address">
+                        <input type="text" id="email" name="email" class="rounded-none rounded-e-lg bg-gray-50 border  text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5      dark:focus:ring-blue-500 " placeholder="Enter Email address">
                     </div>
                     <span class="text-rose-500 text-sm font-medium" id="emailErr"></span>
 
@@ -53,7 +56,7 @@
                                 <path d="M12.804 9c1.038-1.793 2.977-3 5.196-3 3.311 0 6 2.689 6 6s-2.689 6-6 6c-2.219 0-4.158-1.207-5.196-3h-3.804l-1.506-1.503-1.494 1.503-1.48-1.503-1.52 1.503-3-3.032 2.53-2.968h10.274zm7.696 1.5c.828 0 1.5.672 1.5 1.5s-.672 1.5-1.5 1.5-1.5-.672-1.5-1.5.672-1.5 1.5-1.5z" />
                             </svg>
                         </span>
-                        <input type="password" id="password" class="rounded-none rounded-e-lg bg-gray-50 border  text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:focus:ring-blue-500 " placeholder="Enter password">
+                        <input type="password" name="password" id="password" class="rounded-none rounded-e-lg bg-gray-50 border  text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5 dark:focus:ring-blue-500 " placeholder="Enter password">
                     </div>
                     <span class="text-rose-500 text-sm font-medium" id="passErr"></span>
 
@@ -79,11 +82,13 @@
             </form>
 
         </div>
+        <!-- ============= Message Show =============== -->
+        <p class="p-2 text-rose-500 bg-rose-100 hidden" id="deleteMessage"></p>
+        <p class="p-2 text-green-500 bg-green-100 hidden" id="addMessage"></p>
         <div class="sm:flex sm:items-center sm:justify-between">
             <div>
                 <div class="flex items-center gap-x-3">
                     <h2 class="text-2xl uppercase font-medium text-gray-800 t">Users</h2>
-
                 </div>
 
             </div>
@@ -121,7 +126,7 @@
                     </svg>
                 </span>
 
-                <input type="text" placeholder="Search" class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-orange-300 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  dark:text-gray-700  focus:border-orange-400 focus:border-orange-500 focus:ring-orange-500 focus:outline-none focus:ring focus:ring-opacity-40">
+                <input type="text" id="search_users" placeholder="Search" class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-orange-300 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  dark:text-gray-700  focus:border-orange-400 focus:border-orange-500 focus:ring-orange-500 focus:outline-none focus:ring focus:ring-opacity-40">
             </div>
         </div>
 
@@ -153,42 +158,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-orange-200 ">
-                                <tr>
-                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                        dadasd585ssd8e
-                                    </td>
-                                    <td class="px-12 py-4 text-sm font-medium whitespace-nowrap">
-                                        <div>
-                                            <img src="<?php echo URLROOT ?>/assets/upload/vector.png" alt="" class="w-12 h-12">
-                                        </div>
-                                    </td>
-                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                        AbdelouahedSn
-                                    </td>
-                                    <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
-                                        abdosenane@gmail.com
-                                    </td>
-
-                                    <td class="px-4 py-4 text-sm whitespace-nowrap">
-                                        24-12-2024
-                                    </td>
-
-                                    <td class="px-4 py-4 text-sm whitespace-nowrap text-center">
-                                        <!-- Edit Button -->
-                                        <!-- <button class="px-1 py-1 text-gray-800 bg-gray-100 transition-colors duration-200 rounded-lg  hover:bg-slate-500 hover:text-white">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                            </svg>
-                                        </button> -->
-                                        <!-- delete button -->
-                                        <button class="px-1 py-1  bg-rose-600 transition-colors duration-200 rounded-lg  hover:bg-red-500">
-                                            <svg class="w-6 h-6 text-white " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
-                                            </svg>
-                                        </button>
-                                    </td>
-                                </tr>
+                            <tbody class="bg-white divide-y divide-orange-200 " id="users-container">
                             </tbody>
                         </table>
                     </div>
