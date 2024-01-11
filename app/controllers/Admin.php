@@ -168,7 +168,7 @@ include APPROOT . '/helpers/helpers.php';
             }
             
         }
-// ========================================
+// ==================================================================
 
 
 
@@ -180,13 +180,33 @@ include APPROOT . '/helpers/helpers.php';
             ];
             $this->view('admin/wikis' , $data);
         }
+//========================= Actions CATEGORIES =============================
         public function categories() {
 
+            $tokenCSRF = bin2hex(random_bytes(32));
+            $_SESSION['csrf_token'] = $tokenCSRF;
             $data = [
                 'page' => 'categories',
+                'token' => $tokenCSRF
             ];
             $this->view('admin/categories' , $data);
         }
+
+        public function addCategories() {
+
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                
+            }
+
+
+        }
+
+
+
+
+
+
+//============================================================================
         public function tags() {
 
             $data = [
@@ -195,5 +215,6 @@ include APPROOT . '/helpers/helpers.php';
             $this->view('admin/tags' , $data);
         }
     }
+
 
 ?>
