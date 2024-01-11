@@ -196,6 +196,55 @@ include APPROOT . '/helpers/helpers.php';
 
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 
+
+                $errors = [];
+                if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                    $data = [
+                        'success' => false,
+                        'message' => 'Oops! It seems there was an issue with the form submission. Please try again.'
+                    ];
+                    echo json_encode($data);
+                    exit;
+                } else {
+                    // var_dump($_FILES);
+                    // Validate Images 
+                    $allowed_extentions = [
+                        'jpg',
+                        'png',
+                        'jpeg'
+                    ];
+                    $file_extention = pathinfo($_FILES['imageCategory']['name'], PATHINFO_EXTENSION);
+  
+                    if (!in_array(strtolower($file_extention) , $allowed_extentions)) {
+                        $errors['imgErr'] = "Upload valid images. Only PNG and JPEG , JPG are allowed.";
+                    }else if (($_FILES['imageCategory']['size'] > 2000000)) {
+                        $errors['imgErr'] = "Image size exceeds 2MB";
+                    }else {
+                        $errors['imgErr'] = "";
+
+                    }
+                        
+                    // if data is good Or not 
+                    if (empty($errors['imgErr'])) {
+                        
+                        
+                       
+                        $data = [
+                            'success' => true,
+                            'message' => ''
+                        ];
+                        echo json_encode($data);
+                        exit;
+                    } else {
+                        $data = [
+                            'success' => false,
+                            'errors' => $errors
+                        ];
+                        echo json_encode($data);
+                        exit;
+                    }
+                }
+                
             }
 
 

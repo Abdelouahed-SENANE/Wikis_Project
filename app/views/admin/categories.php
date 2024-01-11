@@ -10,7 +10,7 @@
         <div id="overlayForm" class="bg-slate-800 bg-opacity-60 hidden w-full h-full z-[10] flex items-center justify-center backdrop-blur-sm absolute top-0 left-0">
 
             <!-- ============== Form to Admin -->
-            <form class=" bg-white w-[600px] rounded-xl p-5 relative" id="formAdmin">
+            <form class=" bg-white w-[600px] rounded-xl p-5 relative" id="formCategory" enctype="multipart/form-data">
                 <div class="absolute top-2 right-2 cursor-pointer" id="closeBtn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" class="w-6 h-6 text-meduim">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -21,10 +21,10 @@
                     <h2 class="text-2xl font-medium text-primary text-center">Form Categories</h2>
                 </div>
                 <div>
-                    <!-- <input type="hidden" name="csrf_token" value="<?= $data['token'] ?>"> -->
+                    <input type="hidden" name="csrf_token" value="<?= $data['token'] ?>">
                 </div>
                 <div class="py-2">
-                    <label for="username" class="block mb-2 text-sm font-medium ">Category name</label>
+                    <label for="desc" class="block mb-2 text-sm font-medium ">Category name</label>
                     <div class="flex">
                         <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-primary border border-e-0  rounded-s-md ">
                             <svg clip-rule="evenodd" class="w-4 h-4 text-white" fill-rule="evenodd" stroke-linejoin="round" fill="currentColor" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -36,17 +36,21 @@
                     <span class="text-rose-500 text-sm font-medium" id="nameErr"></span>
                 </div>
                 <div class="py-2">
-                    <label for="email" class="block mb-2 text-sm font-medium ">Category Description </label>
+                    <label for="email" class="block mb-2 text-sm font-medium ">Category Description</label>
                     <div class="flex">
 
                         <textarea id="categoryDesc" name="desc" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary focus:border-primary dark:placeholder-gray-400 resize-none" placeholder="Write your thoughts here..."></textarea>
 
                     </div>
                     <span class="text-rose-500 text-sm font-medium" id="descErr"></span>
-
+                </div>
+                <div class="py-2"> 
+                    <label class="block mb-2 text-sm font-medium text-gray-900" for="file_input">Image Category</label>
+                    <input class="block file:py-1.5 file:px-3 file:text-white file:border-none file:bg-primary w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none" name="imageCategory"  id="imageCategory" type="file">
+                    <span class="text-rose-500 text-sm font-medium" id="imgErr"></span>
                 </div>
                 <div class="text-center">
-                    <button type="submit" name="addAdmin" class="bg-primary hover:bg-orange-600 text-white font-meduim py-2 px-12 mt-5 rounded-full">
+                    <button type="submit" name="addCategory" class="bg-primary hover:bg-orange-600 text-white font-meduim py-2 px-12 mt-5 rounded-full">
                         Submit
                     </button>
                 </div>
@@ -70,7 +74,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span>Add Admin</span>
+                    <span>Add Category</span>
                 </button>
             </div>
         </div>
@@ -109,7 +113,7 @@
                             <thead class="bg-orange-500 ">
                                 <tr>
                                     <th scope="col" class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-white">
-                                        <span>ID_user</span>
+                                        <span>ID_Category</span>
                                     </th>
 
                                     <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-white">
@@ -165,25 +169,6 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </main>
 <script type="module" src="<?php echo URLROOT ?>/js/admin/categories.js"></script>
