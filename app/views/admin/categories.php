@@ -50,8 +50,11 @@
                     <span class="text-rose-500 text-sm font-medium" id="imgErr"></span>
                 </div>
                 <div class="text-center">
-                    <button type="submit" name="addCategory" class="bg-primary hover:bg-orange-600 text-white font-meduim py-2 px-12 mt-5 rounded-full">
+                    <button type="submit" id="addBtn" name="addCategory" class="bg-primary hover:bg-orange-600 text-white font-meduim py-2 px-12 mt-5 rounded-full">
                         Submit
+                    </button>
+                    <button type="submit" id="editBtn" name="addCategory" class="bg-primary hover:bg-orange-600 text-white font-meduim py-2 px-12 mt-5 rounded-full">
+                        Edit
                     </button>
                 </div>
             </form>
@@ -70,12 +73,13 @@
 
             <div class="flex items-center mt-4 gap-x-3">
 
-                <button id="openBtn" class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-primary rounded-md shrink-0 sm:w-auto gap-x-2 hover:bg-orange-400  ">
+                <button id="openAddFrom"  class="flex items-center justify-center w-1/2 px-5 py-2 text-sm tracking-wide text-white transition-colors duration-200 bg-primary rounded-md shrink-0 sm:w-auto gap-x-2 hover:bg-orange-400  ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <span>Add Category</span>
                 </button>
+                
             </div>
         </div>
 
@@ -101,7 +105,7 @@
                     </svg>
                 </span>
 
-                <input type="text" id="search_users" placeholder="Search" class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-orange-300 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  dark:text-gray-700  focus:border-orange-400 focus:border-orange-500 focus:ring-orange-500 focus:outline-none focus:ring focus:ring-opacity-40">
+                <input type="text" id="search_categories" placeholder="Search by name" class="block w-full py-1.5 pr-5 text-gray-700 bg-white border border-orange-300 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  dark:text-gray-700  focus:border-orange-400 focus:border-orange-500 focus:ring-orange-500 focus:outline-none focus:ring focus:ring-opacity-40">
             </div>
         </div>
 
@@ -117,23 +121,23 @@
                                     </th>
 
                                     <th scope="col" class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right text-white">
-                                        Image user
+                                        Category name
                                     </th>
 
                                     <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white">
-                                        Username
+                                        Category Desc
                                     </th>
 
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white">Email</th>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white">Category image</th>
 
-                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white">Joined at</th>
+                                    <th scope="col" class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-white">Added at</th>
 
                                     <th scope="col" class="relative py-3.5 px-4">
                                         <span class="sr-only">Edit</span>
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-orange-200 " id="users-container">
+                            <tbody class="bg-white divide-y divide-orange-200 " id="category-container">
                             </tbody>
                         </table>
                     </div>

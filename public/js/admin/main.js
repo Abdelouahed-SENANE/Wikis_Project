@@ -32,14 +32,20 @@ burgerSidebar.addEventListener('click' , () => {
 })
 // ====== Display Form admmin
 
-const openForm = document.getElementById('openBtn');
+const openAddFrom = document.getElementById('openAddFrom');
+const addBtn = document.getElementById('addBtn');
+const editBtn = document.getElementById('editBtn');
+const openEditForm = document.getElementById('openBtn');
 const closeForm = document.getElementById('closeBtn');
 const form = document.getElementById('overlayForm');
 
 
-openForm.addEventListener('click' , () => {
+openAddFrom.addEventListener('click' , () => {
     if (form.classList.contains('hidden')) {
         form.classList.remove('hidden');
+        addBtn.classList.remove('hidden');
+        editBtn.classList.add('hidden');
+
     }
 })
 closeForm.addEventListener('click' , () => {
