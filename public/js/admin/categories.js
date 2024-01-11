@@ -1,7 +1,8 @@
-import {validRegex} from '../config.js';
+import {validRegex , inputEmpty} from '../config.js';
 
 // Validarion Form ==========================
 const formCategory = document.getElementById('formCategory');
+const formEditCategory = document.getElementById('formEditCategory');
 const categoryName = document.getElementById('nameCategory');
 const nameErr = document.getElementById('nameErr');
 const categoryDesc = document.getElementById('categoryDesc');
@@ -9,9 +10,11 @@ const descErr = document.getElementById('descErr');
 const categoryImg = document.getElementById('imageCategory');
 const imgErr = document.getElementById('imgErr');
 const overlayForm = document.getElementById('overlayForm');
+const overlayEditForm = document.getElementById('overlayEditForm');
 
 
 
+// ============ ADD FORM =====================
 formCategory.addEventListener('submit' , (e) => {
     e.preventDefault();
 
@@ -45,39 +48,49 @@ formCategory.addEventListener('submit' , (e) => {
         imgErr.innerText = ''
     }
     // Sent Data To Server 
-    if ( !descErr.innerText && !nameErr.innerText) {
+    // if ( !descErr.innerText && !nameErr.innerText) {
         
-        let url = 'http://localhost/wikis/admin/addCategories'
-        let formData = new FormData(formCategory);
-        const  addMessage = document.getElementById('addMessage');
+                if ( !descErr.innerText && !nameErr.innerText && !imgErr.innerText) {
+                    let url = 'http://localhost/wikis/admin/addCategories'
+                    let formData = new FormData(formCategory);
+                    const  addMessage = document.getElementById('addMessage');
+            
+                    fetch(url , {
+                        method : 'POST',
+                        body : formData
+                    }).then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network not was good')
+                        }
+                        return response.json();
+                    }).then(data => {
+                        if (!data.success) {
+                            imgErr.innerText = data.errors.imgErr;
+                        }else{
+                            overlayForm.classList.add('hidden');
+                            addMessage.classList.remove('hidden')
+                            addMessage.innerText = data.message;
+                            setTimeout(function () { 
+                                addMessage.classList.add('hidden')
+                                addMessage.innerText = '';  
+                                },5000)
+                            addMessage.innerText = data.message;
+                            getDataFromDatabase(data.categories)
+                        }
+                    }).catch(error => {
+                        console.error('Error fetch Data from Server '  + error);
+                    })
+                }
+            
+            
 
-        fetch(url , {
-            method : 'POST',
-            body : formData
-        }).then(response => {
-            if (!response.ok) {
-                throw new Error('Network not was good')
-            }
-            return response.json();
-        }).then(data => {
-            if (!data.success) {
-                imgErr.innerText = data.errors.imgErr;
-            }else{
-                overlayForm.classList.add('hidden');
-                addMessage.classList.remove('hidden')
-                addMessage.innerText = data.message;
-                setTimeout(function () { 
-                    addMessage.classList.add('hidden')
-                    addMessage.innerText = '';  
-                    },5000)
-                addMessage.innerText = data.message;
-                getDataFromDatabase(data.categories)
-            }
-        }).catch(error => {
-            console.error('Error fetch Data from Server '  + error);
-        })
+        
 
-    }
+
+
+
+
+    // }
     
 })
 // Get Data From Data base 
@@ -91,13 +104,13 @@ function getDataFromDatabase(data) {
                     ${category.ID_category}
                 </td>
                 
-                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap name_category">
                     ${category.Category_Name}
                 </td>
-                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
+                <td class="px-4 py-4 text-sm font-medium whitespace-nowrap desc_category">
                     ${category.Category_Desc}
                 </td>
-                <td class="px-12 py- text-sm font-medium whitespace-nowrap">
+                <td class="px-12 py- text-sm font-medium whitespace-nowrap img_category">
                     <div>
                         <img src="http://localhost/wikis/assets/upload/${category.Img_category}" alt="" class="w-8 h-8 rounded-full">
                     </div>
@@ -108,7 +121,7 @@ function getDataFromDatabase(data) {
                 
                 <td class="px-4 py-4 text-sm flex items-center gap-1 whitespace-nowrap text-center">
                     <!-- Edit Button -->
-                    <button class="px-1 py-1 text-gray-800 bg-gray-100 transition-colors duration-200 rounded-lg  hover:bg-slate-500 hover:text-white update">
+                    <button id="openEditForm" class="px-1 py-1 text-gray-800 bg-gray-100 transition-colors duration-200 rounded-lg  hover:bg-slate-500 hover:text-white update">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 
                          pointer-events-none" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
@@ -213,4 +226,110 @@ searchInput.addEventListener('keyup' , () =>{
         console.error('Error Fetch Data ' + error);
    })
 
+})
+// ================== EDIT CATEGORY =====================
+const categoryId = document.getElementById('id_category');
+const editCategoryName = document.getElementById('editNameCategory');
+const editNameErr = document.getElementById('editNameErr');
+const editCategoryDesc = document.getElementById('editCategoryDesc');
+const editDescErr = document.getElementById('editDescErr');
+const editCategoryImg = document.getElementById('editImageCategory');
+const editImgErr = document.getElementById('editImgErr');
+
+categoryContainer.addEventListener('click' , (e) =>{
+    if (e.target.classList.contains('update')) {
+        if (overlayEditForm.classList.contains('hidden')) {
+            overlayEditForm.classList.remove('hidden');
+        }
+
+        var id_category = e.target.closest('tr').querySelector('.ID_category').textContent.trim();
+        var name_category = e.target.closest('tr').querySelector('.name_category').textContent.trim();
+        var desc_category = e.target.closest('tr').querySelector('.desc_category').textContent.trim();
+
+        categoryId.value = id_category
+        editCategoryName.value = name_category;
+        editCategoryDesc.value = desc_category;
+
+        // ==================== 
+        formEditCategory.addEventListener('submit' , (e) => {
+            e.preventDefault();
+        
+            // Validate Category Name 
+            if (editCategoryName.value == '') {
+                editNameErr.innerText = 'Please Enter Category name'
+            }else {
+                const usernameRegex = /^[a-zA-Z_.-]{3,20}$/;
+                if (!validRegex(editCategoryName , usernameRegex)) {
+                    editNameErr.innerText = 'Please enter a valid username (3-20 characters, _, ., -)' 
+                }else{
+                    editNameErr.innerText = '';
+                }  
+            }
+            // Validate Category Description 
+            if (editCategoryDesc.value == '') {
+                editDescErr.innerText = 'Please Enter Category description'
+            }else {
+                const descriptionRegex = /^[a-zA-Z0-9\s.,!?()'-]+$/;
+                if (!validRegex(editCategoryDesc , descriptionRegex)) {
+                    editDescErr.innerText = 'Invalid character in the description'; 
+                }else{
+                    editDescErr.innerText = '';
+                }  
+            }
+        
+            // Validate Category Images 
+            if (editCategoryImg.value == '') {
+                editImgErr.innerText = 'Please upload image category'
+            }else {
+                editImgErr.innerText = ''
+            }
+            // Sent Data To Server 
+            // if ( !descErr.innerText && !nameErr.innerText) {
+                
+            if ( !editDescErr.innerText && !editNameErr.innerText && !editImgErr.innerText) {
+                let url = 'http://localhost/wikis/admin/updateCategory'
+                let formData = new FormData(formEditCategory);
+                const  addMessage = document.getElementById('addMessage');
+        
+                fetch(url , {
+                    method : 'POST',
+                    body : formData
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network not was good')
+                    }
+                    return response.json();
+                }).then(data => {
+                    if (!data.success) {
+                        editImgErr.innerText = data.errors.imgErr;
+                    }else{
+                        overlayEditForm.classList.add('hidden');
+                        inputEmpty(editCategoryImg , editCategoryDesc, editCategoryName)
+                        addMessage.classList.remove('hidden')
+                        addMessage.innerText = data.message;
+                        setTimeout(function () { 
+                            addMessage.classList.add('hidden')
+                            addMessage.innerText = '';  
+                            },5000)
+                        addMessage.innerText = data.message;
+                        getDataFromDatabase(data.categories)
+                    }
+                }).catch(error => {
+                    console.error('Error fetch Data from Server '  + error);
+                })
+            }
+                    
+                    
+        
+                
+        
+        
+        
+        
+        
+            // }
+            
+        })
+
+    }
 })

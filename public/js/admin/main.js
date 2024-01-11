@@ -35,21 +35,41 @@ burgerSidebar.addEventListener('click' , () => {
 const openAddFrom = document.getElementById('openAddFrom');
 const addBtn = document.getElementById('addBtn');
 const editBtn = document.getElementById('editBtn');
-const openEditForm = document.getElementById('openBtn');
-const closeForm = document.getElementById('closeBtn');
 const form = document.getElementById('overlayForm');
+const Editform = document.getElementById('overlayEditForm');
+const categoryContainer = document.getElementById('category-container');
+const closeForm = document.getElementById('closeBtn');
+const closeEditForm = document.getElementById('closeEditBtn');
 
 
 openAddFrom.addEventListener('click' , () => {
     if (form.classList.contains('hidden')) {
         form.classList.remove('hidden');
-        addBtn.classList.remove('hidden');
-        editBtn.classList.add('hidden');
+
 
     }
 })
 closeForm.addEventListener('click' , () => {
     if (!form.classList.contains('hidden')) {
         form.classList.add('hidden');
+    
     }
 })
+closeEditForm.addEventListener('click' , () => {
+    if (!Editform.classList.contains('hidden')) {
+        Editform.classList.add('hidden');
+    
+    }
+})
+
+
+// openEditForm.addEventListener('click' , () => {
+//     if (form.classList.contains('hidden')) {
+//         form.classList.remove('hidden');
+//         addBtn.classList.add('hidden');
+//         editBtn.classList.remove('hidden');
+
+//     }
+// })
+
+

@@ -64,6 +64,20 @@
 
 
         }
+        public function updateCategory(Category $updateCategory) {
+            $sql = "UPDATE categories SET Category_Name= :name,Category_Desc= :desc, Img_category= :img, Updated_at= NOW() WHERE  ID_category = :id";
+
+            try {
+                $this->db->query($sql);
+                $this->db->bind(':id' , $updateCategory->ID_category);
+                $this->db->bind(':name' , $updateCategory->Category_Name);
+                $this->db->bind(':desc' , $updateCategory->Category_Desc);
+                $this->db->bind(':img' , $updateCategory->Img_Category);
+                $this->db->execute();
+            } catch (PDOException $e) {
+                echo "Error From Database" . $e->getMessage();
+            }
+        }
 
 
     }
