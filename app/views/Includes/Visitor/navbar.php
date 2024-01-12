@@ -41,12 +41,18 @@
 
                     </div>
                     <div class=" flex flex-col mt-5 items-start  gap-3 lg:flex lg:flex lg:flex-row lg:items-center lg:mt-0 lg:gap-0">
-                        <button class="mr-2">
-                            <a href="<?= URLROOT ?>/pages/login" class="px-5 py-2 border border-primary transition duration-200 hover:bg-primary text-base rounded-full">Login</a>
-                        </button>
-                        <button class="px-5 block text-white py-2 bg-primary text-base  rounded-full">
-                            <a href="<?= URLROOT ?>/pages/register">Register</a>
-                        </button>
+                        <?php if (isset($_SESSION['roleofuser'])) { ?>
+                            <button class="mr-2">
+                                <a href="<?= URLROOT ?>/pages/login" class="px-5 py-2 border border-primary transition duration-200 hover:bg-primary text-base rounded-full">Login</a>
+                            </button>
+                        <?php } else { ?>
+                            <button class="mr-2">
+                                <a href="<?= URLROOT ?>/pages/login" class="px-5 py-2 border border-primary transition duration-200 hover:bg-primary text-base rounded-full">Login</a>
+                            </button>
+                            <button class="px-5 block text-white py-2 bg-primary text-base  rounded-full">
+                                <a href="<?= URLROOT ?>/pages/register">Register</a>
+                            </button>
+                        <?php } ?>
                     </div>
                 </div>
 

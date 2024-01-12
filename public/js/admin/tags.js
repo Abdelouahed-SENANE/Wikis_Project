@@ -76,7 +76,9 @@ fetch('http://localhost/wikis/admin/fetchAllTags' , {
     }
     return response.json();
 }).then(data => {
-    getDataFromDatabase(data.tags)
+    var tags = data.tags.slice(0 , 8)
+
+    getDataFromDatabase(tags)
 
 }).catch(error => {
     console.error('Fetch error:', error);
@@ -128,7 +130,9 @@ tagForm.addEventListener('submit' , (e) => {
                             addMessage.innerText = '';  
                             },5000)
                         addMessage.innerText = data.message;
-                        getDataFromDatabase(data.tags)
+                        var tags = data.tags.slice(0 , 8)
+
+                        getDataFromDatabase(tags)
                     }
                 }).catch(error => {
                     console.error('Error fetch Data from Server '  + error);
@@ -160,8 +164,9 @@ tagForm.addEventListener('submit' , (e) => {
                             addMessage.innerText = '';  
                             },5000)
                         addMessage.innerText = data.message;
-                        getDataFromDatabase(data.tags)
-                    }
+                        var tags = data.tags.slice(0 , 8)
+
+                        getDataFromDatabase(tags)                    }
                 }).catch(error => {
                     console.error('Error fetch Data from Server '  + error);
                 })
@@ -216,8 +221,9 @@ tagContainer.addEventListener('click' , (e) =>{
                     delMessage.classList.add('hidden')
                     delMessage.innerText = '';  
                  },5000)
-                getDataFromDatabase(data.tags)
-            }
+                 var tags = data.tags.slice(0 , 8)
+
+                 getDataFromDatabase(tags)            }
         })
         .catch(error => {
             console.error('Fetch error:', error);

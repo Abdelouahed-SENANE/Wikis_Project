@@ -49,9 +49,13 @@
         }
 
         public function articles() {
+            $tokenCSRF = bin2hex(random_bytes(32));
+            $_SESSION['csrf_token'] = $tokenCSRF;
             $data = [
-                'page' => 'articles'
+                'page' => 'articles',
+                'token' => $tokenCSRF
             ];
+
             // if ($_SESSION['roleofuser'] == 'Auteur') {
             //     // header('Location:' . URLROOT . '/pages/login');
             // }

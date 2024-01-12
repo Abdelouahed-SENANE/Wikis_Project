@@ -30,7 +30,7 @@
                         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M11.362 2c4.156 0 2.638 6 2.638 6s6-1.65 6 2.457v11.543h-16v-20h7.362zm.827-2h-10.189v24h20v-14.386c0-2.391-6.648-9.614-9.811-9.614zm4.811 13h-10v-1h10v1zm0 2h-10v1h10v-1zm0 3h-10v1h10v-1z" />
                         </svg>
-                        <span class="text-base">Articles</span>
+                        <span class="text-base">Wikis</span>
                     </a>
                 </li>
                 <li class="">
@@ -75,24 +75,8 @@
                 </div>
             </div>
             <!-- ========== Container Tags -->
-            <div id="tags-container" class="my-5 grid gap-5 grid-cols-1 lg:grid-cols-4">
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm  dark:border-slate-200">
-                    <a href="#">
-                        <img class="rounded-t-lg" src="<?= URLROOT ?>/assets/upload/wallpaperflare.com_wallpaper.jpg" alt="" />
-                    </a>
-                    <div class="p-5">
-                        <a href="#">
-                            <h5 class="mb-2 text-xl font-semibold tracking-tight text-gray-900 ">Category name</h5>
-                        </a>
-                        <p class="mb-3 font-normal text-gray-700 ">Category Desc</p>
-                        <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-primary rounded-lg hover:bg-orange-600 focus:ring-2 focus:outline-none focus:ring-orange-300 ">
-                            Read more
-                            <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
+            <div id="categories-container" class="my-5 grid gap-5 grid-cols-1 lg:grid-cols-4">
+
 
             </div>
         </main>

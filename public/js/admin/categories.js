@@ -75,8 +75,8 @@ formCategory.addEventListener('submit' , (e) => {
                                 addMessage.innerText = '';  
                                 },5000)
                             addMessage.innerText = data.message;
-                            getDataFromDatabase(data.categories)
-                        }
+                            var categories = data.categories.slice(0 , 8)
+                            getDataFromDatabase(categories)                           }
                     }).catch(error => {
                         console.error('Error fetch Data from Server '  + error);
                     })
@@ -153,7 +153,8 @@ fetch('http://localhost/wikis/admin/fetchAllCategories' , {
     }
     return response.json();
 }).then(data => {
-    getDataFromDatabase(data.categories)
+    var categories = data.categories.slice(0 , 8)
+    getDataFromDatabase(categories)
 
 }).catch(error => {
     console.error('Fetch error:', error);
@@ -188,8 +189,8 @@ categoryContainer.addEventListener('click' , (e) => {
                     delMessage.classList.add('hidden')
                     delMessage.innerText = '';  
                 },5000)
-                getDataFromDatabase(data.categories)
-            }
+                var categories = data.categories.slice(0 , 8)
+                getDataFromDatabase(categories)               }
         })
         .catch(error => {
             console.error('Fetch error:', error);
@@ -312,8 +313,9 @@ categoryContainer.addEventListener('click' , (e) =>{
                             addMessage.innerText = '';  
                             },5000)
                         addMessage.innerText = data.message;
-                        getDataFromDatabase(data.categories)
-                    }
+                var categories = data.categories.slice(0 , 8)
+                getDataFromDatabase(categories)                    
+            }
                 }).catch(error => {
                     console.error('Error fetch Data from Server '  + error);
                 })

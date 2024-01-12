@@ -27,7 +27,7 @@
 
         public function fetchAllCategories()
         {
-            $sql = "SELECT * FROM categories LIMIT 7";
+            $sql = "SELECT * FROM categories";
 
             try {
                 $this->db->query($sql);
