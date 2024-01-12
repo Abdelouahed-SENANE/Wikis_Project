@@ -9,7 +9,7 @@ class serviceTags implements InterfaceTags {
         }
     public function fetchAllTags()
     {
-        $sql = "SELECT * FROM tags limit 7";
+        $sql = "SELECT * FROM tags";
                 try {
                     $this->db->query($sql);
                     $tags = $this->db->manyObjects();

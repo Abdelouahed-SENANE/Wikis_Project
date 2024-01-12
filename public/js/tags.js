@@ -20,7 +20,6 @@ function fetchTagsFromDatabase (data) {
 
 // =============== SEARCH TAGS ==================
 const searchTags = document.getElementById('search_tags');
-console.log(searchTags);
 searchTags.addEventListener('keyup' , () => {
     const searchVal = searchTags.value.trim();
     var encodedString = encodeURIComponent(searchVal);
@@ -38,7 +37,7 @@ searchTags.addEventListener('keyup' , () => {
          return response.json();
     }).then(data => {
         console.log(data);
-         fetchTagsFromDatabase(data.tags)
+        fetchTagsFromDatabase(data.tags)
     }).catch(error => {
          console.error('Error Fetch Data ' + error);
     })
@@ -46,3 +45,24 @@ searchTags.addEventListener('keyup' , () => {
 
 
 })
+
+// Fetch Data when ================
+// Get data When Page Loaded 
+
+fetch('http://localhost/wikis/admin/fetchAllTags' , {
+
+    method : 'GET'
+}).then(response => {
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    return response.json();
+}).then(data => {
+    var start = 0;
+    var end = 16;
+    var newData = data.tags.slice(start , end)
+    fetchTagsFromDatabase(newData)
+
+}).catch(error => {
+    console.error('Fetch error:', error);
+});

@@ -14,7 +14,10 @@
             // if ($_SESSION['roleofuser'] == 'Auteur') {
             //     // header('Location:' . URLROOT . '/pages/login');
             // }
-            $this->view('visitor/tags');
+            $data = [
+                'page' => 'tags'
+            ];
+            $this->view('visitor/tags' , $data);
         }
         public function findTags() {
 
@@ -32,19 +35,29 @@
                 }
                 
             }
-
-
-
-
             $this->view('visitor/findTags');
 
         }
         public function categories() {
+            $data = [
+                'page' => 'categories'
+            ];
             // if ($_SESSION['roleofuser'] == 'Auteur') {
             //     // header('Location:' . URLROOT . '/pages/login');
             // }
-            $this->view('visitor/categories');
+            $this->view('visitor/categories' , $data);
         }
+
+        public function articles() {
+            $data = [
+                'page' => 'articles'
+            ];
+            // if ($_SESSION['roleofuser'] == 'Auteur') {
+            //     // header('Location:' . URLROOT . '/pages/login');
+            // }
+            $this->view('visitor/articles' , $data);
+        }
+
     }
     
 
