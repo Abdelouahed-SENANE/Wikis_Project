@@ -6,13 +6,13 @@
 
 
         public function tags() {
-            if ($_SESSION['roleofuser'] == 'Auteur') {
-                // header('Location:' . URLROOT . '/pages/login');
-            }
+            // if ($_SESSION['roleofuser'] == 'Auteur') {
+            //     // header('Location:' . URLROOT . '/pages/login');
+            // }
             $this->view('visitor/tags');
         }
     }
-
+    
 
 
 ?>

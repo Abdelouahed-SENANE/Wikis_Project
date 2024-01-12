@@ -29,7 +29,7 @@
                         </div>
                         <!-- Features link -->
                         <div class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1" data-te-nav-item-ref>
-                            <a class="p-0 text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 motion-reduce:transition-none lg:px-2" href="#" data-te-nav-link-ref>Tags</a>
+                            <a class="p-0 text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 motion-reduce:transition-none lg:px-2" href="<?= URLROOT ?>/visitor/tags" data-te-nav-link-ref>Tags</a>
                         </div>
                         <!-- Pricing link -->
                         <div class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1" data-te-nav-item-ref>
