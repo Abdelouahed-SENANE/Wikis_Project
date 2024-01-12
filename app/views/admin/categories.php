@@ -116,7 +116,7 @@
         <div class="sm:flex sm:items-center sm:justify-between">
             <div>
                 <div class="flex items-center gap-x-3">
-                    <h2 class="text-2xl uppercase font-medium text-gray-800 t">Users</h2>
+                    <h2 class="text-2xl uppercase font-medium text-gray-800 t">Categories</h2>
                 </div>
 
             </div>

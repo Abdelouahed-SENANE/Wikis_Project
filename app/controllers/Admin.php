@@ -4,10 +4,12 @@ include APPROOT . '/helpers/helpers.php';
     class Admin extends Controller {
         private $userService;
         private $categoryService;
+        private $tagService;
         public function __construct()
         {
             $this->userService = new ServiceUser();
             $this->categoryService = new ServiceCategory();
+            $this->tagService = new serviceTags();
         }
 
         public function dashboard() {
@@ -402,12 +404,170 @@ include APPROOT . '/helpers/helpers.php';
 //============================================================================
         public function tags() {
 
+            $tokenCSRF = bin2hex(random_bytes(32));
+            $_SESSION['csrf_token'] = $tokenCSRF;
             $data = [
                 'page' => 'tags',
+                'token' => $tokenCSRF
             ];
             $this->view('admin/tags' , $data);
         }
+        // ============ FETCH ALL TAGS ===============
+        public function fetchAllTags() {
+            if ($_SERVER['REQUEST_METHOD'] == "GET") {
+                $tags = $this->tagService->fetchAllTags();
+                // sent Response To Browser;
+                $data = [
+                    'success' => true,
+                    'tags' => $tags,
+                ];
+                echo json_encode($data);
+                exit;
+            }
+
+        }
+        public function addTags() {
+                if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+                    $tagName = sanitizeInput($_POST['name']);
+
+
+                    $errors = [];
+                    if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                        $data = [
+                            'success' => false,
+                            'message' => 'Oops! It seems there was an issue with the form submission. Please try again.'
+                        ];
+                        echo json_encode($data);
+                        exit;
+                    } else {
+                        if (empty($tagName)) {
+                            $errors['tagNameErr'] = "Please Enter tag name";
+                        } else {
+                                $regexTagname = '/^[a-zA-Z0-9_.\-\s]{3,20}$/';
+                                if (!preg_match($regexTagname, $tagName)) {
+                                    $errors['tagNameErr'] = "Please Valid tag name";
+                                } else {
+                                    $errors['tagNameErr'] = "";
+                                }
+
+                        }
+                        if (empty($errors['tagNameErr'])) {
+
+                            $newTag = new Tags();
+                            $newTag->ID_Tag = uniqid();
+                            $newTag->Tag_name = $tagName;
+        
+
+                            $this->tagService->addTag($newTag);
+                            $tags = $this->tagService->fetchAllTags();
+                            // sent Response To Browser;
+                            $data = [
+                                'success' => true,
+                                'tags' => $tags,
+                                'message' => 'Tag Added succefully'
+                            ];
+                            echo json_encode($data);
+                            exit;
+                        }else {
+                            $data = [
+                                'success' => false,
+                                'errors' => $errors
+                            ];
+                            echo json_encode($data);
+                            exit;
+                        }
+                        
+                    
+                    }
+                
+            }
+        }
+
+        public function updateTags() {
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+                $tagName = sanitizeInput($_POST['name']);
+                $tag_id = sanitizeInput($_POST['tag_id']);
+
+
+                $errors = [];
+                if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+                    $data = [
+                        'success' => false,
+                        'message' => 'Oops! It seems there was an issue with the form submission. Please try again.'
+                    ];
+                    echo json_encode($data);
+                    exit;
+                } else {
+                    if (empty($tagName)) {
+                        $errors['tagNameErr'] = "Please Enter tag name";
+                    } else {
+                            $regexTagname = '/^[a-zA-Z0-9_.\-\s]{3,20}$/';
+                            if (!preg_match($regexTagname, $tagName)) {
+                                $errors['tagNameErr'] = "Please Valid tag name";
+                            } else {
+                                $errors['tagNameErr'] = "";
+                            }
+
+                    }
+                    if (empty($errors['tagNameErr'])) {
+
+                        $newTag = new Tags();
+                        $newTag->ID_Tag = $tag_id;
+                        $newTag->Tag_name = $tagName;
+    
+
+                        $this->tagService->updateTag($newTag);
+                        $tags = $this->tagService->fetchAllTags();
+                        // sent Response To Browser;
+                        $data = [
+                            'success' => true,
+                            'tags' => $tags,
+                            'message' => 'Tag Update succefully'
+                        ];
+                        echo json_encode($data);
+                        exit;
+                    }else {
+                        $data = [
+                            'success' => false,
+                            'errors' => $errors
+                        ];
+                        echo json_encode($data);
+                        exit;
+                    }
+                    
+                
+                }
+            
+        }
+
+        }
+        public function deleteTag() {
+            $jsonInput = file_get_contents('php://input');
+            $data = json_decode($jsonInput , true);
+            if (isset($data['id'])) {
+                
+                $this->tagService->deleteTag($data['id']);
+                $tags = $this->tagService->fetchAllTags();
+                // sent Response To Browser;
+                $data = [
+                    'success' => true,
+                    'message' => 'Tag Deleted Succefully',
+                    'tags' => $tags,
+                ];
+                echo json_encode($data);
+                exit;
+
+
+            }
+        }
+
+
+
     }
+
+
 
 
 ?>
