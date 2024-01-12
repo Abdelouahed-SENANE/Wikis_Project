@@ -36,7 +36,7 @@
         }
         // Fetch Users From Database 
         public function fetchUsers() {
-            $sql = "SELECT * FROM user";
+            $sql = "SELECT * FROM user LIMIT 7";
             try {
                 $this->db->query($sql);
                 $users = $this->db->manyObjects();
@@ -65,7 +65,7 @@
         // =========== Search Users ========
         public function findUsers($value) {
 
-            $sql = "SELECT * FROM user WHERE Username LIKE :value OR Email LIKE :value";
+            $sql = "SELECT * FROM user WHERE Username LIKE :value OR Email LIKE :value LIMIT 7";
             try {
                 $this->db->query($sql);
                 $this->db->bind(":value" , $value . '%');

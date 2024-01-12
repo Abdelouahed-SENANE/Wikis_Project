@@ -27,7 +27,7 @@
 
         public function fetchAllCategories()
         {
-            $sql = "SELECT * FROM categories";
+            $sql = "SELECT * FROM categories LIMIT 7";
 
             try {
                 $this->db->query($sql);
@@ -51,7 +51,7 @@
         }
         public function findCategories($value) {
 
-            $sql = "SELECT * FROM categories WHERE Category_name LIKE :value";
+            $sql = "SELECT * FROM categories WHERE Category_name LIKE :value LIMIT 7";
             try {
                 $this->db->query($sql);
                 $this->db->bind(":value" , $value . '%');

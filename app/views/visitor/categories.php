@@ -3,7 +3,7 @@
 
 <div class="container mx-auto px-10 my-5">
     <div class="flex flex-col gap-5 lg:flex-row lg:items-center">
-    <aside class="w-full  p-3 lg:w-[200px] shadow-lg rounded-lg">
+        <aside class="w-full  p-3 lg:w-[200px] shadow-lg rounded-lg">
             <div class="flex justify-center">
                 <!-- ============= LOGO ================== -->
                 <img src="<?= URLROOT ?>/assets/images/logo.png" alt="logo" class="w-24 h-24">
@@ -47,8 +47,8 @@
             </ul>
         </aside>
         <main class=" p-3 flex-grow shadow-lg rounded-lg h-full">
-            <div class=" py-1">
-                <h2 class="text-primary font-semibold uppercase text-2xl">Tags</h2>
+            <div class=" py-5">
+                <h2 class="text-primary font-semibold uppercase text-2xl">Categories</h2>
                 <p class="text-base max-w-[700px] my-5">
                     A tag is a keyword or label that categorizes your question with other, similar questions. Using the right tags makes it easier for others to find and answer your question.
                 </p>
@@ -86,5 +86,5 @@
 
 
 
-<script type="module" src="<?php echo URLROOT ?>/js/tags.js"></script>
+<script type="module" src="<?php echo URLROOT ?>/js/categories.js"></script>
 <?php require APPROOT . '/views/Includes/Visitor/footer.php'; ?>

@@ -9,7 +9,7 @@ class serviceTags implements InterfaceTags {
         }
     public function fetchAllTags()
     {
-        $sql = "SELECT * FROM tags";
+        $sql = "SELECT * FROM tags limit 7";
                 try {
                     $this->db->query($sql);
                     $tags = $this->db->manyObjects();
@@ -57,6 +57,22 @@ class serviceTags implements InterfaceTags {
             } catch (PDOException $e) {
                 echo "ERROR FROM DATABASE" . $e->getMessage();
             }
+    }
+
+    public function findTags($value) {
+
+        $sql = "SELECT * FROM tags WHERE Tag_name LIKE :value LIMIT 16";
+        try {
+            $this->db->query($sql);
+            $this->db->bind(":value" , $value . '%');
+            $tags = $this->db->manyObjects();
+            return $tags;
+        } catch (PDOException $e) {
+            echo "Error From Database" . $e->getMessage();
+        }
+
+
+
     }
     
 }
