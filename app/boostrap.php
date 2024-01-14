@@ -2,6 +2,8 @@
 <?php
 session_start();
 require_once 'config/config.php';
+require_once APPROOT . '/helpers/helpers.php';
+
 
 
 function Autoloader($class) {

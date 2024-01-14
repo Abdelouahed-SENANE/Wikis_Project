@@ -12,6 +12,32 @@
         
             return $input;
         }
-
+        // function checkRoleOfUser($roleOfUser) {
+        //     switch ($roleOfUser) {
+        //         case 'Admin':
+        //             header('Location:' . URLROOT . '/admin/dashboard');
+        //             exit();
+        //         case 'Auteur':
+        //             header('Location:' . URLROOT . '/visitor/articles');
+        //             exit();
+        //         default:
+        //             header('Location:' . URLROOT . '/pages/login');
+        //             exit();
+        //     }
+        // }
+        function isLogged() {
+            if(isset($_SESSION['roleofuser'])){
+                return true;
+            }else{
+                return false;
+            }
+        }
+        function isAdmin() {
+            if($_SESSION['roleofuser'] === 'Admin'){
+                return true;
+            }else{
+                return false;
+            }
+        }
 
 ?>

@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="px-2 space-y-1 mb-10 ">
-            <a href="<?php echo URLROOT ?>/admin/home" class="link hover:text-primary hover:bg-white  hover:transition hover:delay-100 group  flex items-center justify-center gap-3 px-2 py-2 text-lg leading-6 font-medium rounded-md">
+            <a href="<?php echo URLROOT ?>/pages/logout" class="link hover:text-primary hover:bg-white  hover:transition hover:delay-100 group  flex items-center justify-center gap-3 px-2 py-2 text-lg leading-6 font-medium rounded-md">
                 <!-- Heroicon name: outline/home -->
                 <svg class=" flex-shrink-0 w-7 h-7 icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 14" height="14" width="14">
                         <path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h7A1.5 1.5 0 0 1 10 1.5v1.939a2 2 0 0 0 -0.734 1.311H5.75a2.25 2.25 0 1 0 0 4.5h3.516A2 2 0 0 0 10 10.561V12.5A1.5 1.5 0 0 1 8.5 14h-7A1.5 1.5 0 0 1 0 12.5v-11Zm10.963 2.807A0.75 0.75 0 0 0 10.5 5v1H5.75a1 1 0 0 0 0 2h4.75v1a0.75 0.75 0 0 0 1.28 0.53l2 -2a0.75 0.75 0 0 0 0 -1.06l-2 -2a0.75 0.75 0 0 0 -0.817 -0.163Z"></path>

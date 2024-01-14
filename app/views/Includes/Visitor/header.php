@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- ============ File css ==================== -->
     <link rel="stylesheet" href="<?php echo URLROOT ?>/css/main.css">
+    <!-- =================  Multi SELECT ============= -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css
+">
     <!-- =============== Font Poppins =============== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,4 +35,4 @@
     <title><?= SITENAME; ?></title>
 </head>
 
-<body class="font-[poppins]">
+<body class="font-[poppins] relative">

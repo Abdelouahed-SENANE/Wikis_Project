@@ -71,7 +71,7 @@ loginFrom.addEventListener('submit' , (e) => {
                     if (data.status == 'errorPass') {
                         errPass.innerText = data.message;
                     }else {
-                        window.location.href = 'http://localhost/wikis/visitor/tags';
+                        window.location.href = 'http://localhost/wikis/admin/dashboard';
                     }
                 }
             }).catch(error => {

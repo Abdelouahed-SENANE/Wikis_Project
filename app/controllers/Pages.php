@@ -1,5 +1,4 @@
 <?php
-include APPROOT . '/helpers/helpers.php';
 
 class Pages extends Controller
 {
@@ -21,7 +20,9 @@ class Pages extends Controller
 
     public function login()
     {
-
+        if (isLogged()) {
+            header('Location:' . URLROOT . '/visitor/articles');
+        }
 
 
         $this->view('pages/login');
@@ -58,7 +59,7 @@ class Pages extends Controller
                 }    
             
             }else{
-                $data = ['status' => 'errorUser' , 'message' => 'User not Found'];
+                $data = ['status' => 'errorUser' , 'message' => 'Username or password incorrect'];
                 header('Content-Type: application/json');
                 echo json_encode($data);
             }
@@ -185,6 +186,19 @@ class Pages extends Controller
             'title' => 'About us'
         ];
         $this->view('pages/about', $data);
+    }
+
+    public function logout() {
+
+        // var_dump($_SESSION);
+        foreach($_SESSION as $key=>$value) {
+                // var_dump($_SESSION[$key]);
+            if ($key !== 'csrf_token') {
+                unset($_SESSION[$key]);
+            }
+        }
+        session_destroy();
+        header('Location:' . URLROOT . '/pages/login');
     }
 }
 ?>

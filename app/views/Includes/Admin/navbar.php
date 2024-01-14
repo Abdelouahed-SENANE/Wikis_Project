@@ -33,8 +33,8 @@
             <div class="flex items-center">
                 <img src="<?= URLROOT  ?>/assets/upload/vector.png" alt="Photo" class="w-[35px] h-[35px] rounded-full mr-1" />
                 <div class="text-sm text-white font-semibold text-center">
-                    <p>Senane Abdelouahed</p>
-                    <span class="text-white text-sm"> Role name </span>
+                    <p><?= $_SESSION['username'] ?></p>
+                    <span class="text-white text-sm"><?= $_SESSION['roleofuser'] ?></span>
                 </div>
             </div>
         </div>

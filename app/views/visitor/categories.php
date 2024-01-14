@@ -62,7 +62,7 @@
                         </svg>
                     </span>
 
-                    <input type="text" id="search_tags" placeholder="Search" class="block w-full text-sm py-1.5 pr-5 text-gray-700 bg-white border border-orange-300 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  dark:text-gray-700  focus:border-orange-400 focus:border-orange-500 focus:ring-orange-500 focus:outline-none focus:ring focus:ring-opacity-40">
+                    <input type="text" id="search_category" placeholder="Search" class="block w-full text-sm py-1.5 pr-5 text-gray-700 bg-white border border-orange-300 rounded-lg md:w-80 placeholder-gray-400/70 pl-11 rtl:pr-11 rtl:pl-5  dark:text-gray-700  focus:border-orange-400 focus:border-orange-500 focus:ring-orange-500 focus:outline-none focus:ring focus:ring-opacity-40">
                 </div>
                 <div class="inline-flex overflow-hidden bg-white border divide-x rounded-lg rtl:flex-row-reverse ">
                     <button class="px-5 py-2 text-xs font-medium text-white transition-colors duration-200 bg-orange-500 sm:text-sm ">

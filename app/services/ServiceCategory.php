@@ -79,6 +79,21 @@
             }
         }
 
+        public function findCategory($value) {
+
+            $sql = "SELECT * FROM categories  WHERE  Category_Name LIKE :value LIMIT 16";
+            try {
+                $this->db->query($sql);
+                $this->db->bind(":value" , $value . '%');
+                $tags = $this->db->manyObjects();
+                return $tags;
+            } catch (PDOException $e) {
+                echo "Error From Database" . $e->getMessage();
+            }
+    
+    
+    
+        }
 
     }
 

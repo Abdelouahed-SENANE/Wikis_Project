@@ -1,28 +1,61 @@
 <?php
-include APPROOT . '/helpers/helpers.php';
 
     class Admin extends Controller {
         private $userService;
         private $categoryService;
         private $tagService;
+        private $serviceDashboard;
+        private $serviceWiki;
         public function __construct()
         {
+            if (isLogged()) {
+                if (!isAdmin()) {
+                    header('Location:' . URLROOT . '/visitor/articles');
+                    exit();
+                }
+            }else {
+                header('Location:' . URLROOT . '/pages/login');
+                exit();
+            }
             $this->userService = new ServiceUser();
+            $this->serviceWiki = new ServiceWiki();
+            $this->serviceDashboard = new ServiceDashboard();
             $this->categoryService = new ServiceCategory();
             $this->tagService = new serviceTags();
         }
-
+// ==================== Dashboard ==============
         public function dashboard() {
+
+            $statistics = $this->serviceDashboard->countRecorsTable();
+
+            // echo "<pre>";
+            // var_dump($rows_database);
 
             $data = [
                 'page' => 'dashboard',
+                'statistics' => $statistics,
             ];
             $this->view('admin/dashboard' , $data);
         }
+        public function statistics() {
 
+            $rows_database = $this->serviceDashboard->getTotalRowCount();
+            $rows_tables = $this->serviceDashboard->getTableRowCounts();
+
+
+            $wikiByCategory = $this->serviceDashboard->createWikiByCategory();
+            $data = [
+                'wikiByCategory' => $wikiByCategory,
+                'rows_database' => $rows_database,
+                'rows_tables' => $rows_tables
+            ];
+            echo json_encode($data);
+            exit;
+        }
 //================= USERS ACTIONS ============== 
         // Pages Users
         public function users() {
+
             $tokenCSRF = bin2hex(random_bytes(32));
             $_SESSION['csrf_token'] = $tokenCSRF;
             $data = [
@@ -273,7 +306,6 @@ include APPROOT . '/helpers/helpers.php';
         }
         // ================ Fetch CATEGORY TO DATABASE ================
         public function fetchAllCategories() {
-
             if ($_SERVER['REQUEST_METHOD'] == "GET") {
                 $categories = $this->categoryService->fetchAllCategories();
                 // sent Response To Browser;
@@ -281,6 +313,8 @@ include APPROOT . '/helpers/helpers.php';
                     'success' => true,
                     'categories' => $categories,
                 ];
+                header('Content-type: application/json');
+
                 echo json_encode($data);
                 exit;
             }
@@ -563,6 +597,37 @@ include APPROOT . '/helpers/helpers.php';
             }
         }
 
+        public function deleteWiki() {
+            $jsonInput = file_get_contents('php://input');
+            $data = json_decode($jsonInput , true);
+
+            if (isset($data['id'])) {
+                $this->serviceWiki->deleteArticle($data['id']);
+                $wikis = $this->serviceWiki->fetchAllWikis();
+
+                    $data = [
+                        'success' => true,
+                        'wikis' => $wikis,
+                    ];
+                    header('Content-type: application/json');
+    
+                    echo json_encode($data);
+                    exit;
+
+            }
+        }
+
+        public function getAllWikis() {
+            $wikis = $this->serviceWiki->fetchAllWikis();
+            $data = [
+                'success' => true,
+                'wikis' => $wikis,
+            ];
+            header('Content-type: application/json');
+
+            echo json_encode($data);
+            exit;
+        }
 
 
     }

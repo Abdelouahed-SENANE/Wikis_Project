@@ -49,7 +49,7 @@ searchTags.addEventListener('keyup' , () => {
 // Fetch Data when ================
 // Get data When Page Loaded 
 
-fetch('http://localhost/wikis/admin/fetchAllTags' , {
+fetch('http://localhost/wikis/visitor/fetchAllTags' , {
 
     method : 'GET'
 }).then(response => {

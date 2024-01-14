@@ -25,18 +25,46 @@ function fetchCategories (data) {
 
 }
 
-fetch('http://localhost/wikis/admin/fetchAllCategories' , {
+fetch('http://localhost/wikis/visitor/fetchAllCategories' , {
 
-    method : 'GET'
-}).then(response => {
+    method : 'GET',
+    }).then(response => {
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }
     return response.json();
-}).then(data => {
-    var categories = data.categories.slice(0 , 12)
-    fetchCategories(categories)
+    }).then(data => {
+        var categories = data.categories.slice(0 , 12)
+        fetchCategories(categories)
 
-}).catch(error => {
-    console.error('Fetch error:', error);
-});
+    }).catch(error => {
+        console.error('Fetch error:', error);
+    });
+
+// =============== SEARCH Categories ==================
+const searchCategory = document.getElementById('search_category');+
+console.log(searchCategory);
+searchCategory.addEventListener('keyup' , () => {
+    const searchVal = searchCategory.value.trim();
+    var encodedString = encodeURIComponent(searchVal);
+    fetch('http://localhost/wikis/visitor/findCategory?search='  + encodedString , {
+         method : "GET",
+         headers : {
+             'Content-Type': 'application/json',
+         },
+         
+    }).then(response => {
+         if (!response.ok) {
+             throw new Error('Network not OK');
+         }
+         return response.json();
+    }).then(data => {
+        console.log(data.categories);
+        fetchCategories(data.categories)
+    }).catch(error => {
+         console.error('Error Fetch Data ' + error);
+    })
+
+
+
+})

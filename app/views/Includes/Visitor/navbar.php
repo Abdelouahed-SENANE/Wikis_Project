@@ -33,7 +33,7 @@
                         </div>
                         <!-- Pricing link -->
                         <div class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1" data-te-nav-item-ref>
-                            <a class="p-0 text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 motion-reduce:transition-none lg:px-2" href="#" data-te-nav-link-ref>Article</a>
+                            <a class="p-0 text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 motion-reduce:transition-none lg:px-2" href="<?= URLROOT ?>/visitor/articles" data-te-nav-link-ref>Article</a>
                         </div>
                         <div class="mb-4 pl-2 lg:mb-0 lg:pl-0 lg:pr-1" data-te-nav-item-ref>
                             <a class="p-0 text-neutral-500 transition duration-200 hover:text-neutral-700 hover:ease-in-out focus:text-neutral-700 disabled:text-black/30 motion-reduce:transition-none lg:px-2" href="#" data-te-nav-link-ref>Help</a>
@@ -42,8 +42,15 @@
                     </div>
                     <div class=" flex flex-col mt-5 items-start  gap-3 lg:flex lg:flex lg:flex-row lg:items-center lg:mt-0 lg:gap-0">
                         <?php if (isset($_SESSION['roleofuser'])) { ?>
-                            <button class="mr-2">
-                                <a href="<?= URLROOT ?>/pages/login" class="px-5 py-2 border border-primary transition duration-200 hover:bg-primary text-base rounded-full">Login</a>
+                            <div class="flex items-center">
+                                <img src="<?= URLROOT  ?>/assets/upload/vector.png" alt="Photo" class="w-[35px] h-[35px] rounded-full mr-1" />
+                                <div class="text-sm text-gray-800 font-semibold text-center">
+                                    <p><?= $_SESSION['username'] ?></p>
+                                    <span class="text-gray-800 text-sm"><?= $_SESSION['roleofuser'] ?></span>
+                                </div>
+                            </div>
+                            <button class="ml-2">
+                                <a href="<?= URLROOT ?>/pages/logout" class="px-5 py-1.5 border border-primary transition duration-200 hover:bg-primary text-sm rounded-full">Log out</a>
                             </button>
                         <?php } else { ?>
                             <button class="mr-2">
